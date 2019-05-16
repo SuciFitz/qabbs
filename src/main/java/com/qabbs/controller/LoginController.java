@@ -34,6 +34,13 @@ public class LoginController {
     @Autowired
     MessageService messageService;
 
+    /**
+    * 功能描述:用户注册
+     *
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/16
+     */
     @RequestMapping(path = {"/reg/"}, method = {RequestMethod.POST})
     public String reg(Model model, @RequestParam("username") String username,
                       @RequestParam("password") String password,
@@ -46,23 +53,27 @@ public class LoginController {
             if (map.containsKey("ticket")) {
                 Cookie cookie = new Cookie("ticket", map.get("ticket").toString());
                 cookie.setPath("/");
+                //若选择记住我，则设置cookie时间为7天
                 if (rememberme) {
                     cookie.setMaxAge(3600*24*5);
                 }
                 response.addCookie(cookie);
                 if (isteacher) {
+                    //如果选择成为老师
                     try {
+                        //向管理员发送私信申请
                         Message message = new Message();
                         message.setCreatedDate(new Date());
                         message.setContent(username + "想要注册为老师");
-                        message.setToId(5);
-                        message.setFromId(0);
+                        message.setToId(userService.selectByName("admin").getId());
+                        message.setFromId(userService.selectByName(username).getId());
                         messageService.addMessage(message);
                     } catch (Exception e) {
-                        logger.error("注册老师失败" + e.getMessage());
+                        logger.error("申请注册老师信息发送失败" + e.getMessage());
                         return "redirect:/";
                     }
                 }
+                //游客被拦截前浏览的页面
                 if (StringUtils.isNotBlank(next)) {
                     return "redirect:" + next;
                 }

@@ -48,7 +48,6 @@ public class InitDatabaseTests {
             user.setHeadUrl(String.format("http://images.qabbs.com/head/%dt.png", random.nextInt(1000)));
             user.setName(String.format("USER%d", i+1));
             user.setPassword("");
-            user.setSalt("");
             userDAO.addUser(user);
 
             for (int j = 1; j < i; ++j) {
