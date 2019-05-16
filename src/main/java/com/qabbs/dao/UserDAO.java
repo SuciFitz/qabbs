@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.*;
 @Mapper
 public interface UserDAO {
     String TABLE_NAME = "user";
-    String INSET_FIELDS = " name, password, salt, head_url, auth ";
-    String SELECT_FIELDS = " id, name, password, salt, head_url, auth";
+    String INSET_FIELDS = " name, password, head_url, auth ";
+    String SELECT_FIELDS = " id, name, password, head_url, auth";
 
     @Insert({"insert into ", TABLE_NAME, "(", INSET_FIELDS,
-            ") values (#{name},#{password},#{salt},#{headUrl},#{auth})"})
+            ") values (#{name},#{password},#{headUrl},#{auth})"})
     int addUser(User user);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where id=#{id}"})

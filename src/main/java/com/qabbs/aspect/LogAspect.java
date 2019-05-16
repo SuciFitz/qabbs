@@ -26,8 +26,4 @@ public class LogAspect {
         logger.info("before method:" + sb.toString());
     }
 
-    @After("execution(* com.qabbs.controller.IndexController.*(..))")
-    public void afterMethod() {
-        logger.info("after method" + new Date());
-    }
 }

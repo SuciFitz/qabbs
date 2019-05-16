@@ -26,6 +26,13 @@ public class UserService {
         return userDAO.selectByName(name);
     }
 
+    /**
+    * 功能描述:用户注册
+     *
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/16
+     */
     public Map<String, Object> register(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(username)) {
@@ -48,10 +55,9 @@ public class UserService {
         // 密码强度
         user = new User();
         user.setName(username);
-        user.setSalt(UUID.randomUUID().toString().substring(0, 5));
         String head = String.format("http://localhost:8080/images/head/%d.png", new Random().nextInt(66));
         user.setHeadUrl(head);
-        user.setPassword(WendaUtil.MD5(password+user.getSalt()));
+        user.setPassword(WendaUtil.MD5(password));
         userDAO.addUser(user);
 
         // 登陆
@@ -61,6 +67,13 @@ public class UserService {
     }
 
 
+    /**
+    * 功能描述:用户登录
+     *
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/16
+     */
     public Map<String, Object> login(String username, String password) {
         Map<String, Object> map = new HashMap<String, Object>();
         if (StringUtils.isBlank(username)) {
@@ -80,7 +93,7 @@ public class UserService {
             return map;
         }
 
-        if (!WendaUtil.MD5(password+user.getSalt()).equals(user.getPassword())) {
+        if (!WendaUtil.MD5(password).equals(user.getPassword())) {
             map.put("msg", "密码不正确");
             return map;
         }
@@ -90,8 +103,16 @@ public class UserService {
         map.put("userId", user.getId());
         return map;
     }
-    //test
 
+    /**
+    * 功能描述:生成一个7天的ticket，若选择记住用户则添加到cookies
+     *
+     * @param
+     * @return:
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/16
+     */
     private String addLoginTicket(int userId) {
         LoginTicket ticket = new LoginTicket();
         ticket.setUserId(userId);
@@ -108,6 +129,13 @@ public class UserService {
         return userDAO.selectById(id);
     }
 
+    /**
+    * 功能描述:用户登出，更新ticket状态为失效
+     *
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/16
+     */
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }
