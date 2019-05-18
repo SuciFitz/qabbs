@@ -60,16 +60,17 @@ public class UpdateController {
                 userService.updatePass(hostHolder.getUser().getId(), pass);
                 if (hostHolder.getUser().getAuth() == 0) {
                     userService.updateAuth(hostHolder.getUser().getId(), 1);
-                    model.addAttribute("msg", "激活失败");
+                    return "redirect:/";
+                }else {
+                    return "redirect:/";
                 }
-                return "update";
             } catch (Exception e) {
-                model.addAttribute("msg", "修改密码失败");
-                return "update";
+                model.addAttribute("msg", "激活失败");
+                return "redirect:/update";
             }
         }else{
             model.addAttribute("msg", "密码错误");
+            return "redirect:/update";
         }
-        return "redirect:/";
     }
 }
