@@ -14,6 +14,7 @@ import com.qabbs.model.Question;
 import com.qabbs.model.User;
 import com.qabbs.model.ViewObject;
 import com.qabbs.service.*;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -99,14 +100,15 @@ public class ManagerController {
     }
 
     @RequestMapping(path = {"/management/searchuser"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String userAll(Model model) {
-        List<User> userList = userService.getAll();
+    public String userAll(Model model, @RequestParam("name") String name) {
         List<ViewObject> vos = new ArrayList<>();
+        List<User> userList = userService.getByName(name);
         for (User user : userList) {
             ViewObject vo = new ViewObject();
-            // vo.set("user", user);
-            // vo.set("followCount", followService.getFollowerCount(EntityType.ENTITY_QUESTION, user.getId()));
-            // vo.set("user", userService.getUser(question.getUserId()));
+            vo.set("user", user);
+            vo.set("commentCount", commentService.getUserCommentCount(user.getId()));
+            vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, user.getId()));
+            vo.set("followeeCount", followService.getFolloweeCount(user.getId(), EntityType.ENTITY_USER));
             vos.add(vo);
         }
         model.addAttribute("vos", vos);
@@ -120,14 +122,19 @@ public class ManagerController {
         for (User user : userList) {
             ViewObject vo = new ViewObject();
             vo.set("user", user);
-            System.out.println(user.getName());
             vo.set("commentCount", commentService.getUserCommentCount(user.getId()));
             vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, user.getId()));
             vo.set("followeeCount", followService.getFolloweeCount(user.getId(), EntityType.ENTITY_USER));
             vos.add(vo);
         }
-        System.out.println(vos);
         model.addAttribute("vos", vos);
         return "userlist";
+    }
+
+    @RequestMapping(path = {"/management/deleteuser"}, method = {RequestMethod.GET, RequestMethod.POST})
+    public String deleteUser(@Param("name") String name){
+        System.out.println(name);
+        userService.deleteByName(name);
+        return "redirect:/management/user";
     }
 }

@@ -6,7 +6,7 @@
     <div role="search" id="zh-top-search" class="zu-top-search">
         <form method="GET" action="/management/searchuser" id="zh-top-search-form" class="zu-top-search-form">
             <input type="hidden" name="type" value="content">
-            <label for="q" class="hide-text">搜索</label><input type="text" class="zu-top-search-input" id="q" name="title" autocomplete="off" value="" placeholder="搜索你感兴趣的内容..." role="combobox" aria-autocomplete="list">
+            <label for="q" class="hide-text">搜索</label><input type="text" class="zu-top-search-input" id="q" name="name" autocomplete="off" value="" placeholder="请输入用户名..." role="combobox" aria-autocomplete="list">
             <button type="submit" class="zu-top-search-button"><span class="hide-text">搜索</span><span class="sprite-global-icon-magnifier-dark"></span></button>
         </form>
     </div>
@@ -15,13 +15,9 @@
         <div class="zu-main-content-inner">
             <div class="zg-section" id="zh-home-list-title">
                 <i class="zg-icon zg-icon-feedlist"></i>最新动态
-                <input type="hidden" id="is-topstory">
-                <!--<span class="zg-right zm-noti-cleaner-setting" style="list-style:none">-->
-                <!--<a href="https://nowcoder.com/settings/filter" class="zg-link-gray-normal">-->
-                <!--<i class="zg-icon zg-icon-settings"></i>设置</a></span>-->
+                <input type="hidden" id="is-topstory">-->
             </div>
             <div class="zu-main-feed-con navigable" data-feedtype="topstory" id="zh-question-list" data-widget="navigable" data-navigable-options="{&quot;items&quot;:&quot;&gt; .zh-general-list .feed-content&quot;,&quot;offsetTop&quot;:-82}">
-                <!--<a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button" style="display:none"></a>-->
                 <div id="js-home-feed-list" class="zh-general-list topstory clearfix" data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}" data-delayed="true" data-za-module="TopStoryFeedList">
 
                     <div class="zm-profile-section-list">
@@ -31,9 +27,12 @@
                                 <div class="zm-profile-card zm-profile-section-item zg-clear no-hovercard">
 
                                     <div class="zg-right">
-                                        <a class="zg-btn zg-btn-follow zm-rich-follow-btn small nth-0
-                                    js-follow-user">关注</a>
+                                        <form action="/management/deleteuser" method="get">
+                                            <input type="hidden" name="name" value="${vo.user.name}"/>
+                                            <button type="submit" class="zu-top-search-button"><span>删除</span></span></button>
+                                        </form>
                                     </div>
+
                                     <a title="Barty" class="zm-item-link-avatar" href="/user/${vo.user.id}">
                                         <img src="${vo.user.headUrl}" class="zm-item-img-avatar">
                                     </a>

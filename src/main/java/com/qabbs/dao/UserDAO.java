@@ -21,6 +21,9 @@ public interface UserDAO {
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where name=#{name}"})
     User selectByName(String name);
 
+    @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where name like '%${name}%'"})
+    List<User> getByName(@Param("name") String name);
+
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME})
     List<User> selectAll();
 
@@ -30,6 +33,6 @@ public interface UserDAO {
     @Update({"update ", TABLE_NAME, " set auth=#{auth} where id=#{id}"})
     void updateauth(User user);
 
-    @Delete({"delete from ", TABLE_NAME, " where id=#{id}"})
-    void deleteById(int id);
+    @Delete({"delete from ", TABLE_NAME, " where name=#{name}"})
+    void deleteByName(@Param("name") String name);
 }

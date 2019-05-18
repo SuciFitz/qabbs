@@ -133,6 +133,14 @@ public class UserService {
         return userDAO.selectById(id);
     }
 
+    public List<User> getByName(String name) {
+        return userDAO.getByName(name);
+    }
+
+    public void deleteByName(String name){
+        userDAO.deleteByName(name);
+    }
+
     /**
     * 功能描述:用户登出，更新ticket状态为失效
      *
