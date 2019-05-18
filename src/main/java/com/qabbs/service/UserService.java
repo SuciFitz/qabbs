@@ -151,4 +151,19 @@ public class UserService {
     public void logout(String ticket) {
         loginTicketDAO.updateStatus(ticket, 1);
     }
+
+    /**
+    * 功能描述:更改密码，同时更改权限。
+     *
+     * @since: 1.0.0
+     * @Author:73952
+     * @Date: 2019/5/18
+     */
+    public void updatePass(int id, String pass){
+        userDAO.updatePassword(id, pass);
+    }
+
+    public void updateAuth(int id, int auth){
+        userDAO.updateauth(id, auth);
+    }
 }

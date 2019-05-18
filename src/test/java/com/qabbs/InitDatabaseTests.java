@@ -55,7 +55,7 @@ public class InitDatabaseTests {
             }
 
             user.setPassword("newpassword");
-            userDAO.updatePassword(user);
+            // userDAO.updatePassword(user);
 
             Question question = new Question();
             question.setCommentCount(i);
