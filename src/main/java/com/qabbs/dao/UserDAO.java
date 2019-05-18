@@ -28,11 +28,12 @@ public interface UserDAO {
     List<User> selectAll();
 
     @Update({"update ", TABLE_NAME, " set password=#{password} where id=#{id}"})
-    void updatePassword(User user);
+    void updatePassword(@Param("id") int id, @Param("password") String pass);
 
     @Update({"update ", TABLE_NAME, " set auth=#{auth} where id=#{id}"})
-    void updateauth(User user);
+    void updateauth(@Param("id") int id, @Param("auth") int auth);
 
     @Delete({"delete from ", TABLE_NAME, " where name=#{name}"})
     void deleteByName(@Param("name") String name);
+
 }
