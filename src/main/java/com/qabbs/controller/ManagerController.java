@@ -14,6 +14,7 @@ import com.qabbs.model.Question;
 import com.qabbs.model.User;
 import com.qabbs.model.ViewObject;
 import com.qabbs.service.*;
+import com.qabbs.util.WendaUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -136,5 +137,22 @@ public class ManagerController {
         System.out.println(name);
         userService.deleteByName(name);
         return "redirect:/management/user";
+    }
+
+    /**
+     * 删除问题
+     * @param questionId
+     * @return
+     */
+
+    @RequestMapping(value = {"/manageDeleteQuestion"}, method = {RequestMethod.GET})
+    public String deleteQuestion(@RequestParam("qid") int questionId) {
+
+        Question question = questionService.getById(questionId);
+        if (question == null) {
+            return WendaUtil.getJSONString(1, "问题不存在");
+        }
+        questionService.deleteQuestion(questionId);
+        return "redirect:/management";
     }
 }

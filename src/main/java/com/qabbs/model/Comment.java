@@ -1,5 +1,6 @@
 package com.qabbs.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Comment {
@@ -10,6 +11,12 @@ public class Comment {
     private String content;
     private Date createdDate;
     private int status;
+    private String strDate;
+
+    public String getStrDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(this.createdDate);
+    }
 
     public int getId() {
         return id;

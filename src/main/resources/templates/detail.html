@@ -41,6 +41,14 @@
                         关注问题
                     </button>
                     #end
+                    #if ($question.userId == $user.id)
+                    <form method="GET" action="/deleteQuestion" id="delQuestion">
+                        <input type="hidden" name="qid" value="${question.id}">
+                        <button type="submit" class="follow-button zg-follow zg-btn-green">
+                            删除问题
+                        </button>
+                    </form>
+                    #end
                     <div class="zh-question-followers-sidebar">
                         <div class="zg-gray-normal">
                             <a href="javascript:void(0);"><strong class="js-user-count">${followUsers.size()}</strong></a>人关注该问题
@@ -108,7 +116,7 @@
                     <a class="zg-anchor-hidden ac" name="22162611-comment"></a>
                     <div class="zm-item-meta answer-actions clearfix js-contentActions">
                         <div class="zm-meta-panel">
-                            <a itemprop="url" class="answer-data-link meta-item" target="_blank" href="">发布于 $data.format('yyyy-MM-dd HH:mm:ss', $comment.comment.createdDate)</a>
+                            <a itemprop="url" class="answer-data-link meta-item" target="_blank" href="">发布于 $comment.comment.strDate</a>
                             <a href="" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
                                 <i class="z-icon-comment"></i>4 条评论</a>
 

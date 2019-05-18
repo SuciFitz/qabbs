@@ -74,6 +74,14 @@
                                     </div>
                                 </div>
                             </div>
+                                <div>
+                                    <form method="GET" action="/manageDeleteQuestion" id="delQuestion">
+                                        <input type="hidden" name="qid" value="${vo.question.id}">
+                                        <button type="submit" class="follow-button zg-follow zg-btn-green">
+                                            删除问题
+                                        </button>
+                                    </form>
+                                </div>
                         </div>
                     </div>
                     #end

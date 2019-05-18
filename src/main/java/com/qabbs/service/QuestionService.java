@@ -44,4 +44,12 @@ public class QuestionService {
     public int updateCommentCount(int id, int count) {
         return questionDAO.updateCommentCount(id, count);
     }
+
+    public void deleteQuestion(int id) {
+        try {
+            questionDAO.deleteQuestion(id);
+        } catch (Exception e) {
+            System.out.println("删除问题失败" + e);
+        }
+    }
 }

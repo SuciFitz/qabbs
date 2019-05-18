@@ -29,4 +29,7 @@ public interface QuestionDAO {
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME, " where title like '%${title}%'"})
     List<Question> getByName(@Param("title") String title);
+
+    @Delete({"delete from" + TABLE_NAME + "where id=#{id}"})
+    void deleteQuestion(@Param("id") int id);
 }

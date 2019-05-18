@@ -1,5 +1,6 @@
 package com.qabbs.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Message {
@@ -10,6 +11,12 @@ public class Message {
     private Date createdDate;
     private int hasRead;
     private String conversationId;
+    private String strDate;
+
+    public String getStrDate() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(this.createdDate);
+    }
 
     public int getId() {
         return id;

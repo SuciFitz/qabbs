@@ -120,4 +120,24 @@ public class QuestionController {
         model.addAttribute("vos", vos);
         return "result";
     }
+
+    /**
+     * 删除问题
+     * @param questionId
+     * @return
+     */
+
+    @RequestMapping(value = {"/deleteQuestion"}, method = {RequestMethod.GET})
+    public String deleteQuestion(@RequestParam("qid") int questionId) {
+        if (hostHolder.getUser() == null) {
+            return WendaUtil.getJSONString(999);
+        }
+
+        Question question = questionService.getById(questionId);
+        if (question == null) {
+            return WendaUtil.getJSONString(1, "问题不存在");
+        }
+        questionService.deleteQuestion(questionId);
+        return "redirect:/";
+    }
 }
