@@ -3,6 +3,8 @@ package com.qabbs.dao;
 import com.qabbs.model.User;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 @Mapper
 public interface UserDAO {
     String TABLE_NAME = "user";
@@ -20,7 +22,7 @@ public interface UserDAO {
     User selectByName(String name);
 
     @Select({"select ", SELECT_FIELDS, " from ", TABLE_NAME})
-    User selectAll(User user);
+    List<User> selectAll();
 
     @Update({"update ", TABLE_NAME, " set password=#{password} where id=#{id}"})
     void updatePassword(User user);

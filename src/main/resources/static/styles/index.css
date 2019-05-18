@@ -11711,6 +11711,9 @@ html.no-touchevents .zh-add-question-form .question-suggest-ac-wrap .ac-renderer
 .zh-summary {
     -webkit-tap-highlight-color: rgba(225,225,225,.5);
     position: relative;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     cursor: pointer
 }
 

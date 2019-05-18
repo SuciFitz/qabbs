@@ -112,10 +112,13 @@ public class LoginController {
                 }
                 response.addCookie(cookie);
 
-                eventProducer.fireEvent(new EventModel(EventType.LOGIN)
-                        .setExt("username", username).setExt("email", "monkeymilu@sina.com")
-                        .setActorId((int)map.get("userId")));
+                // eventProducer.fireEvent(new EventModel(EventType.LOGIN)
+                //         .setExt("username", username).setExt("email", "monkeymilu@sina.com")
+                //         .setActorId((int)map.get("userId")));
 
+                if (userService.selectByName(username).getAuth() == 3){
+                    return "redirect:/management";
+                }
                 if (StringUtils.isNotBlank(next)) {
                     return "redirect:" + next;
                 }

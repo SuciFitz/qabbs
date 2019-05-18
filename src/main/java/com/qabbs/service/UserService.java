@@ -26,6 +26,10 @@ public class UserService {
         return userDAO.selectByName(name);
     }
 
+    public List<User> getAll() {
+        return userDAO.selectAll();
+    }
+
     /**
     * 功能描述:用户注册
      *

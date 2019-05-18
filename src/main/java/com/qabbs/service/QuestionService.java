@@ -24,6 +24,10 @@ public class QuestionService {
         return questionDAO.getByName(title);
     }
 
+    public List<Question> getAll() {
+        return questionDAO.getAll();
+    }
+
     public int addQuestion(Question question) {
         question.setTitle(HtmlUtils.htmlEscape(question.getTitle()));
         question.setContent(HtmlUtils.htmlEscape(question.getContent()));

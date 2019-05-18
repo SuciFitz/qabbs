@@ -107,7 +107,7 @@ public class QuestionController {
     }
 
     @RequestMapping(path = {"/question/search"}, method = {RequestMethod.GET, RequestMethod.POST})
-    public String index(Model model,@RequestParam("title") String title) {
+    public String search(Model model,@RequestParam("title") String title) {
         List<Question> questionList = questionService.getByName(title);
         List<ViewObject> vos = new ArrayList<>();
         for (Question question : questionList) {
