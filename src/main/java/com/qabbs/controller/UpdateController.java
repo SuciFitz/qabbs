@@ -19,6 +19,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  *
@@ -48,14 +50,16 @@ public class UpdateController {
     LikeService likeService;
 
     @RequestMapping(path = {"/update"}, method = {RequestMethod.POST, RequestMethod.GET})
-    public String update(Model model){
+    public String update(Model model, String msg){
         User user = hostHolder.getUser();
         model.addAttribute("user", user);
+        model.addAttribute("msg", msg);
         return "changePass";
     }
 
     @RequestMapping(path = {"/update/pass"}, method = {RequestMethod.POST, RequestMethod.GET})
-    public String updatePass(@Param("oldPass") String oldPass, @Param("pass") String pass, Model model){
+    public String updatePass(@Param("oldPass") String oldPass, @Param("pass") String pass, Model model,
+    RedirectAttributes attr){
         if(hostHolder.getUser().getPassword().equals(WendaUtil.MD5(oldPass))) {
             try {
                 userService.updatePass(hostHolder.getUser().getId(), WendaUtil.MD5(pass));
@@ -66,11 +70,11 @@ public class UpdateController {
                     return "redirect:/";
                 }
             } catch (Exception e) {
-//                model.addAttribute("msg", "激活失败");
+                attr.addAttribute("msg", "激活失败");
                 return "redirect:/update";
             }
         }else{
-//            model.addAttribute("msg", "密码错误");
+                attr.addAttribute("msg", "密码错误");
             return "redirect:/update";
         }
     }
