@@ -94,7 +94,11 @@ public class QuestionController {
             if (hostHolder.getUser() == null) {
                 question.setUserId(WendaUtil.ANONYMOUS_USERID);
                 // return WendaUtil.getJSONString(999);
-            } else {
+            }
+            else if (hostHolder.getUser().getAuth() == 0) {
+                return WendaUtil.getJSONString(888);
+            }
+            else {
                 question.setUserId(hostHolder.getUser().getId());
             }
             if (questionService.addQuestion(question) > 0) {

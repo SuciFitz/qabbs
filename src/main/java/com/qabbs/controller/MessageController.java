@@ -40,6 +40,9 @@ public class MessageController {
         if (hostHolder.getUser() == null) {
             return "redirect:/reglogin";
         }
+        if (hostHolder.getUser().getAuth() == 0) {
+            return "redirect:/update";
+        }
         int localUserId = hostHolder.getUser().getId();
         List<Message> conversationList = messageService.getConversationList(localUserId, 0, 10);
         List<ViewObject> conversations = new ArrayList<ViewObject>();

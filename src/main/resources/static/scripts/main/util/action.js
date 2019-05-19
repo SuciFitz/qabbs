@@ -148,6 +148,11 @@
                 alert('未登录');
                 window.location.href = '/reglogin?next=' + window.encodeURI(window.location.href);
                 return;
+            } else if (oResult.code == 888) {
+                // 未激活
+                alert('未激活');
+                window.location.href = '/update';
+                return;
             }
             nCode === 0 && oConf.call && oConf.call(oResult);
             nCode !== 0 && oConf.error && oConf.error(oResult);

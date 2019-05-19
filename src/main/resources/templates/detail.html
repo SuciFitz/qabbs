@@ -138,10 +138,14 @@
                             <textarea name="content" id="content" class="zm-editable-editor-field-element editable" style="width:100%;"></textarea>
                         </div>
                     </div>
-
                     <div class="zm-command clearfix">
                             <span class=" zg-right">
-                                <button type="submit" class="submit-button zg-btn-blue">发布回答</button></span>
+                                #if (!$user||$user.auth==0)
+                                <button type="submit" class="submit-button zg-btn-blue" disabled>发布回答</button>
+                                #else
+                                <button type="submit" class="submit-button zg-btn-blue">发布回答</button>
+                                #end
+                            </span>
                     </div>
                 </div>
             </div>

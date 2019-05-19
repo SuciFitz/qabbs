@@ -39,6 +39,9 @@ public class FollowController {
         if (hostHolder.getUser() == null) {
             return WendaUtil.getJSONString(999);
         }
+        if (hostHolder.getUser().getAuth() == 0) {
+            return WendaUtil.getJSONString(888);
+        }
 
         boolean ret = followService.follow(hostHolder.getUser().getId(), EntityType.ENTITY_USER, userId);
 
@@ -72,6 +75,9 @@ public class FollowController {
     public String followQuestion(@RequestParam("questionId") int questionId) {
         if (hostHolder.getUser() == null) {
             return WendaUtil.getJSONString(999);
+        }
+        if (hostHolder.getUser().getAuth() == 0) {
+            return WendaUtil.getJSONString(888);
         }
 
         Question q = questionService.getById(questionId);
