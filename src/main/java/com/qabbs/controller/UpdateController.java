@@ -12,6 +12,7 @@ package com.qabbs.controller;
 import com.qabbs.model.HostHolder;
 import com.qabbs.model.User;
 import com.qabbs.service.*;
+import com.qabbs.util.WendaUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -55,9 +56,9 @@ public class UpdateController {
 
     @RequestMapping(path = {"/update/pass"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String updatePass(@Param("oldPass") String oldPass, @Param("pass") String pass, Model model){
-        if(hostHolder.getUser().getPassword().equals(oldPass)) {
+        if(hostHolder.getUser().getPassword().equals(WendaUtil.MD5(oldPass))) {
             try {
-                userService.updatePass(hostHolder.getUser().getId(), pass);
+                userService.updatePass(hostHolder.getUser().getId(), WendaUtil.MD5(pass));
                 if (hostHolder.getUser().getAuth() == 0) {
                     userService.updateAuth(hostHolder.getUser().getId(), 1);
                     return "redirect:/";
@@ -65,11 +66,11 @@ public class UpdateController {
                     return "redirect:/";
                 }
             } catch (Exception e) {
-                model.addAttribute("msg", "激活失败");
+//                model.addAttribute("msg", "激活失败");
                 return "redirect:/update";
             }
         }else{
-            model.addAttribute("msg", "密码错误");
+//            model.addAttribute("msg", "密码错误");
             return "redirect:/update";
         }
     }

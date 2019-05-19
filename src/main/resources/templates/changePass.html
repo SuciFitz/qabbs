@@ -29,15 +29,15 @@
         </div>
         <div class="desk-front sign-flow clearfix sign-flow-simple">
             <div class="view view-signin" data-za-module="SignInForm" style="display: block;">
-                <form action="/updatepass" id="regloginform" method="get">
+                <form action="/update/pass" id="regloginform" method="get">
                     <input type="hidden" name="_xsrf" value="21aa1c8d254df2899b23ab9afbd62a53">
                     <div class="group-inputs">
-                        ${user.id}
+                        ${user.name}
                         <div class="input-wrapper">
-                            <input type="password" name="oldpass" aria-label="旧密码" placeholder="当前密码" required="true">
+                            <input type="password" name="oldPass" aria-label="旧密码" placeholder="当前密码" required="true">
                         </div>
                         <div class="input-wrapper">
-                            <input type="password" id="pw1" name="newpass" aria-label="新密码" placeholder="新密码" required="true">
+                            <input type="password" id="pw1" name="pass" aria-label="新密码" placeholder="新密码" required="true">
                         </div>
                         <div class="input-wrapper">
                             <input type="password" id="pw2" name="newpass" aria-label="确认新密码" placeholder="确认新密码" required="true" onkeyup="validate()">
@@ -58,11 +58,11 @@
         var pw1 = document.getElementById("pw1").value;
         var pw2 = document.getElementById("pw2").value;
         if(pw1 == pw2) {
-            document.getElementById("tishi").innerHTML="<font color='green'>两次密码相同</font>";
+            document.getElementById("tishi").innerHTML="<font color='#00FFFF'>两次密码相同</font>";
             document.getElementById("submit").disabled = false;
         }
         else {
-            document.getElementById("tishi").innerHTML="<font color='red'>两次密码不相同</font>";
+            document.getElementById("tishi").innerHTML="<font color='white'>两次密码不相同</font>";
             document.getElementById("submit").disabled = true;
         }
     }

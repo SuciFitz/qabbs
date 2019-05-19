@@ -50,6 +50,19 @@
                     </a>
                 </li>
                 #end
+                #if($user.auth==1)
+                <li>
+                    <a href="/update" tabindex="-1" id=":4">
+                        <i class="zg-icon zg-icon-dd-home"></i>更改密码
+                    </a>
+                </li>
+                #else
+                <li>
+                    <a href="/update" tabindex="-1" id=":5">
+                        <i class="zg-icon zg-icon-dd-home"></i>激活用户
+                    </a>
+                </li>
+                #end
                 <li>
                     <a href="/msg/list" tabindex="-1" id=":2">
                         <i class="zg-icon zg-icon-dd-pm"></i>私信
@@ -58,7 +71,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/logout" tabindex="-1" id=":4">
+                    <a href="/logout" tabindex="-1" id=":6">
                         <i class="zg-icon zg-icon-dd-logout"></i>退出
                     </a>
                 </li>
