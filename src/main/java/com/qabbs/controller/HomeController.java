@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +40,6 @@ public class HomeController {
         for (Question question : questionList) {
             ViewObject vo = new ViewObject();
             vo.set("question", question);
-            System.out.println(question.getCreatedDate());
             vo.set("followCount", followService.getFollowerCount(EntityType.ENTITY_QUESTION, question.getId()));
             vo.set("user", userService.getUser(question.getUserId()));
             vos.add(vo);
@@ -56,6 +52,16 @@ public class HomeController {
                         @RequestParam(value = "pop", defaultValue = "0") int pop) {
         model.addAttribute("vos", getQuestions(0, 0, 10));
         return "index";
+    }
+
+    @RequestMapping(path = {"/dynamic"}, method = {RequestMethod.GET})
+    public String dynamic(Model model) {
+        return "dynamic";
+    }
+
+    @RequestMapping(path = {"/life"}, method = {RequestMethod.GET})
+    public String life(Model model) {
+        return "life";
     }
 
     @RequestMapping(path = {"/user/{userId}"}, method = {RequestMethod.GET, RequestMethod.POST})
@@ -76,4 +82,5 @@ public class HomeController {
         model.addAttribute("profileUser", vo);
         return "profile";
     }
+
 }

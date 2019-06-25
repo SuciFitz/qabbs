@@ -5,6 +5,7 @@ public class User {
     private String name;
     private String password;
     private String headUrl;
+    private String salt;
     private int auth;
 
     public User() {
@@ -13,6 +14,7 @@ public class User {
     public User(String name) {
         this.name = name;
         this.password = "";
+        this.salt = "";
         this.headUrl = "";
         this.auth = 0;
     }
@@ -50,4 +52,12 @@ public class User {
     public int getAuth() { return auth; }
 
     public void setAuth(int auth) { this.auth = auth; }
+
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
 }

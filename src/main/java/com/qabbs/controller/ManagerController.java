@@ -53,6 +53,8 @@ public class ManagerController {
     @Autowired
     QuestionService questionService;
 
+    @Autowired
+    LikeService likeService;
 
     @RequestMapping(path = {"/manager"})
     public String index(){
@@ -110,6 +112,7 @@ public class ManagerController {
             vo.set("commentCount", commentService.getUserCommentCount(user.getId()));
             vo.set("followerCount", followService.getFollowerCount(EntityType.ENTITY_USER, user.getId()));
             vo.set("followeeCount", followService.getFolloweeCount(user.getId(), EntityType.ENTITY_USER));
+            vo.set("likesCount", likeService.getLikeCount(EntityType.ENTITY_USER, user.getId()));
             vos.add(vo);
         }
         model.addAttribute("vos", vos);
@@ -121,6 +124,9 @@ public class ManagerController {
         List<ViewObject> vos = new ArrayList<>();
         List<User> userList = userService.getAll();
         for (User user : userList) {
+            if (user.getAuth() == 3) {
+                continue;
+            }
             ViewObject vo = new ViewObject();
             vo.set("user", user);
             vo.set("commentCount", commentService.getUserCommentCount(user.getId()));

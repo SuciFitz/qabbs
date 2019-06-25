@@ -13,6 +13,9 @@
 
 </head>
 <body class="zhi  no-auth">
+<div id="goback">
+    <a href="/" class="zu-back" id="zu-back" data-za-c="view-home" data-za-a="visit_home" title="回到首页">首页</a>
+</div>
 <div class="login_logo_img">
     <img src="../images/res/qa.jpg" />
 </div>
@@ -40,10 +43,10 @@
                             <input type="password" name="oldPass" aria-label="旧密码" placeholder="当前密码" required="true">
                         </div>
                         <div class="input-wrapper">
-                            <input type="password" id="pw1" name="pass" aria-label="新密码" placeholder="新密码" required="true">
+                            <input type="password" id="pw1" name="pass" aria-label="新密码" placeholder="新密码" required="true" minlength="6">
                         </div>
                         <div class="input-wrapper">
-                            <input type="password" id="pw2" name="newpass" aria-label="确认新密码" placeholder="确认新密码" required="true" onkeyup="validate()">
+                            <input type="password" id="pw2" name="newpass" aria-label="确认新密码" placeholder="确认新密码" required="true" onkeyup="validate()" minlength="6">
                             <span id="tishi"></span>
                         </div>
                     </div>

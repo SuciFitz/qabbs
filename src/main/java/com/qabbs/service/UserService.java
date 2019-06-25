@@ -59,9 +59,10 @@ public class UserService {
         // 密码强度
         user = new User();
         user.setName(username);
+        user.setSalt(UUID.randomUUID().toString().substring(0, 5));
         String head = String.format("http://localhost:8080/images/head/%d.png", new Random().nextInt(66));
         user.setHeadUrl(head);
-        user.setPassword(WendaUtil.MD5(password));
+        user.setPassword(WendaUtil.MD5(password+user.getSalt()));
         userDAO.addUser(user);
 
         // 登陆
@@ -97,7 +98,9 @@ public class UserService {
             return map;
         }
 
-        if (!WendaUtil.MD5(password).equals(user.getPassword())) {
+        if (!WendaUtil.MD5(password+user.getSalt()).equals(user.getPassword())) {
+            System.out.println(user.getPassword());
+            System.out.println(password+user.getSalt());
             map.put("msg", "密码不正确");
             return map;
         }
@@ -125,6 +128,7 @@ public class UserService {
         ticket.setExpired(date);
         ticket.setStatus(0);
         ticket.setTicket(UUID.randomUUID().toString().replaceAll("-", ""));
+//        System.out.println("ticket"+ticket.getTicket());
         loginTicketDAO.addTicket(ticket);
         return ticket.getTicket();
     }

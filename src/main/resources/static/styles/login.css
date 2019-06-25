@@ -1448,6 +1448,22 @@ html.modal-open.no-flexbox .modal-wrapper .mutiview-dialog {
     top: -12px
 }
 
+.zu-back {
+    float:left;
+    width:35px;
+    height:100%;
+    margin-top: 10px;
+    margin-left: 10px;
+    padding: 5px;
+    background-image:url(../images/img/goback.png);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:35px, 80%;
+    background-color: #A1181F;
+    text-indent:-9999px;
+    color:#fff
+}
+
 #zh-tooltip {
     position: absolute;
     background: 0 0;
@@ -2285,7 +2301,7 @@ html.modal-open.no-flexbox .modal-wrapper .mutiview-dialog {
     color: #fff;
     text-align: center;
     float: left;
-    width: 145px;
+    width: 295px;
     text-shadow: 0 1px 1px rgba(0,0,0,.2);
     background: #80c3f7;
     background: -webkit-linear-gradient(top,#80c3f7,#6bbaf8);

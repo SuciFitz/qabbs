@@ -15,40 +15,40 @@
                     <a href="javascript:;" class="zu-main-feed-fresh-button" id="zh-main-feed-fresh-button" style="display:none"></a>
                     <div id="js-home-feed-list" class="zh-general-list topstory clearfix" data-init="{&quot;params&quot;: {}, &quot;nodename&quot;: &quot;TopStory2FeedList&quot;}" data-delayed="true" data-za-module="TopStoryFeedList">
 
-                        #foreach($vo in $vos)
+<!--                        #foreach($vo in $vos)-->
                         <div class="feed-item folding feed-item-hook feed-item-2
                         " feed-item-a="" data-type="a" id="feed-2" data-za-module="FeedItem" data-za-index="">
                             <meta itemprop="ZReactor" data-id="389034" data-meta="{&quot;source_type&quot;: &quot;promotion_answer&quot;, &quot;voteups&quot;: 4168, &quot;comments&quot;: 69, &quot;source&quot;: []}">
                             <div class="feed-item-inner">
                                 <div class="avatar">
-                                    <a title="$!{vo.user.name}" data-tip="p$t$amuro1230" class="zm-item-link-avatar" target="_blank" >
-                                        <img src="$!{vo.user.headUrl}" class="zm-item-img-avatar"></a>
+                                    <a title="香蕉羊" data-tip="p$t$amuro1230" class="zm-item-link-avatar" target="_blank" >
+                                        <img src="http://localhost:8080/images/head/32.png" class="zm-item-img-avatar"></a>
                                 </div>
                                 <div class="feed-main">
                                     <div class="feed-content" data-za-module="AnswerItem">
                                         <meta itemprop="answer-id" content="389034">
                                         <meta itemprop="answer-url-token" content="13174385">
                                         <h2 class="feed-title">
-                                            <a class="question_link" target="_blank" href="/question/$!{vo.question.id}">$!{vo.question.title}</a></h2>
+                                            <a class="question_link" target="_blank" href="/question/48">2019 MSI 决赛 G2 3:0 完胜 TL 夺冠，如何评价本场比赛？</a></h2>
                                         <div class="feed-question-detail-item">
                                             <div class="question-description-plain zm-editable-content"></div>
                                         </div>
                                         <div class="expandable entry-body">
                                             <div class="zm-item-vote">
-                                                <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">${vo.followCount}</a></div>
+                                                <a class="zm-item-vote-count js-expand js-vote-count" href="javascript:;" data-bind-votecount="">2</a></div>
                                             <!--<div class="zm-item-answer-author-info">-->
                                                 <!--<a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/$!{vo.user.id}">$!{vo.user.name}</a>-->
                                                 <!--，$data.format('yyyy-MM-dd HH:mm:ss', $!{vo.question.createdDate})</div>-->
                                             <div class="zm-item-answer-author-info">
-                                                <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/$!{vo.user.id}">$!{vo.user.name}</a>
-                                                $!{vo.question.strDate}</div>
+                                                <a class="author-link" data-tip="p$b$amuro1230" target="_blank" href="/user/$!{vo.user.id}">香蕉羊</a>
+                                                2019-05-20 02:14:00</div>
                                             <div class="zm-item-vote-info" data-votecount="4168" data-za-module="VoteInfo">
                                                 <span class="voters text">
                                                     <a href="#" class="more text">
                                                         <span class="js-voteCount">4168</span>&nbsp;人赞同</a></span>
                                             </div>
                                             <div class="zm-item-rich-text expandable js-collapse-body" data-resourceid="123114" data-action="/answer/content" data-author-name="york" data-entry-url="/question/19857995/answer/13174385">
-                                                <div class="zh-summary summary clearfix">${vo.question.content}</div>
+                                                <div class="zh-summary summary clearfix">日前，华为被美国商务部列入管制“实体名单”，华为海思总裁何庭波今天凌晨发致员工的一封信，信中称，公司曾经做出了极限生存的假设，总有一天所有美国的先进芯片和技术将不可获得，而华为为了这个以为永远不会发生的假设为公司生存打造了很多“备胎”。 何庭波称，“今天，命运的年轮转到这个极限而黑暗的时刻，超级大国毫不留情地中断全球合作的技术与产业体系，做出了最疯狂的决定，在毫无依据的条件下，把华为放入了（管制）实体名单。” 面对美国的这一举措，华为海思将会把所有曾经打造的备胎转正，今后还将保持开放创新，并实现科技自立。“今后的路，不会再有另一个十年来打造备胎然后再换胎了，缓冲区已经消失，每一个新产品一出生，将必须同步‘科技自立’的方案。”何庭波在信中说道。</div>
                                             </div>
                                         </div>
                                         <div class="feed-meta">
@@ -57,7 +57,7 @@
 <!--                                                    <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">-->
 <!--                                                        <i class="z-icon-follow"></i>关注问题</a>-->
                                                     <a href="#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
-                                                        <i class="z-icon-comment"></i>${vo.question.commentCount} 条评论</a>
+                                                        <i class="z-icon-comment"></i>0 条评论</a>
 
 
                                                     <button class="meta-item item-collapse js-collapse">
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                         </div>
-                        #end
+<!--                        #end-->
                     </div>
                     <a href="javascript:;" id="zh-load-more" data-method="next" class="zg-btn-white zg-r3px zu-button-more" style="">更多</a></div>
             </div>

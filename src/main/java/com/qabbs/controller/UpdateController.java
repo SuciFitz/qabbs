@@ -60,9 +60,9 @@ public class UpdateController {
     @RequestMapping(path = {"/update/pass"}, method = {RequestMethod.POST, RequestMethod.GET})
     public String updatePass(@Param("oldPass") String oldPass, @Param("pass") String pass, Model model,
     RedirectAttributes attr){
-        if(hostHolder.getUser().getPassword().equals(WendaUtil.MD5(oldPass))) {
+        if(hostHolder.getUser().getPassword().equals(WendaUtil.MD5(oldPass+hostHolder.getUser().getSalt()))) {
             try {
-                userService.updatePass(hostHolder.getUser().getId(), WendaUtil.MD5(pass));
+                userService.updatePass(hostHolder.getUser().getId(), WendaUtil.MD5(pass+hostHolder.getUser().getSalt()));
                 if (hostHolder.getUser().getAuth() == 0) {
                     userService.updateAuth(hostHolder.getUser().getId(), 1);
                     return "redirect:/";

@@ -147,6 +147,7 @@ public class JedisAdapter implements InitializingBean {
         user.setName("xx");
         user.setPassword("ppp");
         user.setHeadUrl("a.png"   );
+        user.setSalt("salt");
         user.setId(1);
         print(46, JSONObject.toJSONString(user));
         jedis.set("user1", JSONObject.toJSONString(user));

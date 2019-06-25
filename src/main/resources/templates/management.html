@@ -60,8 +60,8 @@
                                     <div class="feed-meta">
                                         <div class="zm-item-meta answer-actions clearfix js-contentActions">
                                             <div class="zm-meta-panel">
-                                                <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">
-                                                    <i class="z-icon-follow"></i>关注问题</a>
+<!--                                                <a data-follow="q:link" class="follow-link zg-follow meta-item" href="javascript:;" id="sfb-123114">-->
+<!--                                                    <i class="z-icon-follow"></i>关注问题</a>-->
                                                 <a href="#" name="addcomment" class="meta-item toggle-comment js-toggleCommentBox">
                                                     <i class="z-icon-comment"></i>${vo.question.commentCount} 条评论</a>
 
@@ -75,7 +75,7 @@
                                 </div>
                             </div>
                                 <div>
-                                    <form method="GET" action="/manageDeleteQuestion" id="delQuestion">
+                                    <form method="GET" action="/manageDeleteQuestion" id="delQuestion" style="margin-left: 800px;">
                                         <input type="hidden" name="qid" value="${vo.question.id}">
                                         <button type="submit" class="follow-button zg-follow zg-btn-green">
                                             删除问题
